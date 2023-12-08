@@ -69,7 +69,6 @@ typedef uint64_t HashT;
 #if defined(SDLMAME_MACOSX) || defined(OSD_MAC)
 
 #include <cstring>
-#include <cstdio>
 
 #ifndef APIENTRY
 #define APIENTRY
