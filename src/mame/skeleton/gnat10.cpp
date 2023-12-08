@@ -22,7 +22,6 @@
 //#include "machine/i8251.h"
 #include "machine/com8116.h"
 //#include "machine/mm58167.h"
-//#include "machine/tms9914.h"
 #include "machine/wd_fdc.h"
 //#include "machine/z80ctc.h"
 //#include "machine/z80pio.h"
