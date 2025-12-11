@@ -19,8 +19,8 @@
 
 # TARGET = mame
 # SUBTARGET = tiny
-# TOOLS = 1
-# EMULATOR = 1
+TOOLS = 1
+EMULATOR = 0
 # TESTS = 1
 # BENCHMARKS = 1
 # OSD = sdl
