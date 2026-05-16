@@ -34,7 +34,7 @@ jobs:
       env:
         USE_LIBSDL: 1
         TOOLS: 1
-      run: make -j2
+      run: make -j2 jcdb
     # - name: Validate
       # run: ./mame -validate
     # - uses: actions/upload-artifact@main
@@ -45,3 +45,9 @@ jobs:
           # chdman
           # unidasm
         # if-no-files-found: error
+    - uses: actions/upload-artifact@main
+      with:
+        name: mame-macos-compile-${{ github.sha }}
+        path: |
+          compile_commands.json
+        if-no-files-found: error

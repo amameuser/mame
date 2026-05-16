@@ -59,7 +59,7 @@ jobs:
         ARCHOPTS: ${{ matrix.archopts }}
         SUBTARGET: ${{ matrix.subtarget }}
         TOOLS: 1
-      run: make -j3
+      run: make -j3 jcdb
     # - name: Validate
       # run: ./${{ matrix.executable }} -validate
     # - name: Reconcile driver list
@@ -74,3 +74,9 @@ jobs:
           # chdman
           # unidasm
         # if-no-files-found: error
+    - uses: actions/upload-artifact@main
+      with:
+        name: ${{ matrix.executable }}-linux-${{ matrix.compiler }}-compile-${{ github.sha }}
+        path: |
+          compile_commands.json
+        if-no-files-found: error

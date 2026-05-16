@@ -74,7 +74,7 @@ jobs:
         SUBTARGET: ${{ matrix.subtarget }}
         TOOLS: 1
         USE_SDL3: 1
-      run: make -j3
+      run: make -j3 jcdb
     # - name: Validate
       # run: ./${{ matrix.executable }}.exe -validate
     # - uses: actions/upload-artifact@main
@@ -85,3 +85,9 @@ jobs:
           # chdman.exe
           # unidasm.exe
         # if-no-files-found: error
+    - uses: actions/upload-artifact@main
+      with:
+        name: ${{ matrix.executable }}-windows-${{ matrix.compiler }}-compile-${{ github.sha }}
+        path: |
+          compile_commands.json
+        if-no-files-found: error
