@@ -6,7 +6,7 @@
  * Nov 2010, Derrick Renaud
  ************************************************************************/
 
- #include "emu.h"
+#include "emu.h"
 
 #include "copsnrob_a.h"
 
