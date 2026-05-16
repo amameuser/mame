@@ -62,7 +62,7 @@ jobs:
       with:
         msystem: ${{ matrix.msys }}
         update: true
-        install: git make ${{ matrix.slug }}-${{ matrix.cc }} ${{ matrix.slug }}-python ${{ matrix.slug }}-lld ${{ matrix.slug }}-llvm ${{ matrix.slug }}-libc++ ${{ matrix.slug }}-sdl3 ${{ matrix.extrapkg }}
+        install: git make ${{ matrix.slug }}-bear ${{ matrix.slug }}-${{ matrix.cc }} ${{ matrix.slug }}-python ${{ matrix.slug }}-lld ${{ matrix.slug }}-llvm ${{ matrix.slug }}-libc++ ${{ matrix.slug }}-sdl3 ${{ matrix.extrapkg }}
     - uses: actions/checkout@main
       with:
         fetch-depth: 0
@@ -75,7 +75,7 @@ jobs:
         SUBTARGET: ${{ matrix.subtarget }}
         TOOLS: 1
         USE_SDL3: 1
-      run: make -j4
+      run: bear -- make -j4
     - name: Validate
       run: ./${{ matrix.executable }}.exe -validate
     - uses: actions/upload-artifact@main
@@ -85,4 +85,10 @@ jobs:
           ${{ matrix.executable }}.exe
           chdman.exe
           unidasm.exe
+        if-no-files-found: error
+    - uses: actions/upload-artifact@main
+      with:
+        name: ${{ matrix.executable }}-windows-${{ matrix.compiler }}-compile-${{ github.sha }}
+        path: |
+          compile_commands.json
         if-no-files-found: error
