@@ -48,7 +48,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y libsdl2-dev libsdl2-ttf-dev libfontconfig-dev libasound2-dev libxinerama-dev libxi-dev qt6-base-dev qt6-base-dev-tools
+        sudo apt-get install -y bear libsdl2-dev libsdl2-ttf-dev libfontconfig-dev libasound2-dev libxinerama-dev libxi-dev qt6-base-dev qt6-base-dev-tools
     - name: Install clang
       if: matrix.compiler == 'clang'
       run: sudo apt-get install -y clang
@@ -59,7 +59,7 @@ jobs:
         ARCHOPTS: ${{ matrix.archopts }}
         SUBTARGET: ${{ matrix.subtarget }}
         TOOLS: 1
-      run: make -j3
+      run: bear -- make -j3
     - name: Validate
       run: ./${{ matrix.executable }} -validate
     - name: Reconcile driver list
@@ -73,4 +73,10 @@ jobs:
           ${{ matrix.executable }}
           chdman
           unidasm
+        if-no-files-found: error
+    - uses: actions/upload-artifact@main
+      with:
+        name: ${{ matrix.executable }}-linux-${{ matrix.compiler }}-compile-${{ github.sha }}
+        path: |
+          compile_commands.json
         if-no-files-found: error
