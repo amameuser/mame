@@ -61,6 +61,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         msystem: ${{ matrix.msys }}
+        update: true
         install: git make ${{ matrix.slug }}-bear ${{ matrix.slug }}-jq ${{ matrix.slug }}-${{ matrix.cc }} ${{ matrix.slug }}-python ${{ matrix.slug }}-lld ${{ matrix.slug }}-llvm ${{ matrix.slug }}-libc++ ${{ matrix.slug }}-sdl3 ${{ matrix.extrapkg }}
     - uses: actions/checkout@main
       with:
