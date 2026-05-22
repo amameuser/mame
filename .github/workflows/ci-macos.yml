@@ -52,4 +52,6 @@ jobs:
         name: mame-macos-compile-${{ github.sha }}
         path: |
           compile_commands.json
+          build/generated
+          src/lib/netlist/generated
         if-no-files-found: error

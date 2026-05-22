@@ -93,4 +93,6 @@ jobs:
         name: ${{ matrix.executable }}-windows-${{ matrix.compiler }}-compile-${{ github.sha }}
         path: |
           compile_commands.json
+          build/generated
+          src/lib/netlist/generated
         if-no-files-found: error
