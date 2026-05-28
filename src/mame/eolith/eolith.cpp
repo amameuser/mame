@@ -105,7 +105,6 @@
 
 #include "cpu/e132xs/e132xs.h"
 #include "cpu/mcs51/i8051.h"
-#include "cpu/mcs51/i8051.h"
 #include "machine/eepromser.h"
 #include "machine/gen_latch.h"
 #include "sound/qs1000.h"

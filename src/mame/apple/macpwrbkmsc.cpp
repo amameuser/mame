@@ -90,7 +90,6 @@
 #include "machine/z80scc.h"
 #include "machine/ncr5380.h"
 #include "machine/nscsi_bus.h"
-#include "bus/nscsi/devices.h"
 
 #include "softlist_dev.h"
 #include "speaker.h"

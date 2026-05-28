@@ -145,7 +145,6 @@
 #include "machine/ncr5380.h"
 #include "machine/nscsi_bus.h"
 #include "machine/pseudovia.h"
-#include "bus/nscsi/devices.h"
 #include "sound/asc.h"
 #include "video/wd90c26.h"
 

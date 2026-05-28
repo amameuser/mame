@@ -101,7 +101,6 @@ Scanline 0 is the start of vblank.
 #include "machine/ncr5380.h"
 #include "machine/nscsi_bus.h"
 #include "machine/rescap.h"
-#include "bus/nscsi/devices.h"
 #include "machine/ram.h"
 #include "machine/applefdintf.h"
 #include "machine/timer.h"

@@ -98,7 +98,6 @@
 #include "machine/pit8253.h"
 #include "machine/z80sio.h"
 #include "machine/x2212.h"
-#include "machine/z80sio.h"
 #include "sound/spkrdev.h"
 #include "emupal.h"
 #include "screen.h"

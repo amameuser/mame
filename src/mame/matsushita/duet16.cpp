@@ -14,7 +14,6 @@
 #include "machine/msm58321.h"
 #include "machine/6840ptm.h"
 #include "machine/z80sio.h"
-#include "machine/pit8253.h"
 #include "machine/am9517a.h"
 #include "video/mc6845.h"
 #include "emupal.h"

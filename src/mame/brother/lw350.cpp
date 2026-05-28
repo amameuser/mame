@@ -5,7 +5,6 @@
 
 #include "cpu/z180/z180.h"
 #include "imagedev/floppy.h"
-#include "imagedev/floppy.h"
 #include "machine/timer.h"
 #include "machine/upd765.h"
 #include "sound/beep.h"

@@ -12,7 +12,6 @@
 #include "machine/z80sio.h"
 #include "machine/pit8253.h"
 #include "machine/upd765.h"
-#include "machine/i8255.h"
 #include "bus/rs232/rs232.h"
 
 
