@@ -539,7 +539,6 @@ the keypad symbols seem to use a different matrix pattern from the rest?
 #include "machine/pit8253.h"
 #include "machine/ram.h"
 #include "machine/upd765.h"
-#include "machine/upd765.h"
 #include "video/mc6845.h"
 
 #include "screen.h"

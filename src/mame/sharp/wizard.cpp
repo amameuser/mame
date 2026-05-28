@@ -66,7 +66,6 @@ More info:
 #include "screen.h"
 #include "softlist_dev.h"
 #include "speaker.h"
-#include "screen.h"
 
 
 namespace {

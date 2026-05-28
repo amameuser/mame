@@ -14,7 +14,6 @@
 #include "machine/upd765.h"     /* FDC superio */
 #include "machine/pc_lpt.h"     /* PC-Parallel Port */
 #include "machine/pckeybrd.h"   /* PC-AT keyboard */
-#include "machine/upd765.h"     /* FDC superio */
 #include "machine/ins8250.h"    /* pc com port */
 #include "sound/beep.h"         /* pcw/pcw16 beeper */
 #include "machine/intelfsh.h"
