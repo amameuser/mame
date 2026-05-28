@@ -17,7 +17,6 @@
 #include "modules/midi/midi_module.h"
 #include "modules/netdev/netdev_module.h"
 #include "modules/monitor/monitor_module.h"
-#include "modules/netdev/netdev_module.h"
 #include "modules/output/output_module.h"
 #include "modules/render/render_module.h"
 #include "modules/sound/sound_module.h"
