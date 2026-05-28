@@ -14,7 +14,6 @@
 #include "bgfx/shadermanager.h"
 #include "bgfx/slider.h"
 #include "bgfx/target.h"
-#include "bgfx/target.h"
 #include "bgfx/targetmanager.h"
 #include "bgfx/texture.h"
 #include "bgfx/texturemanager.h"
