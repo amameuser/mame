@@ -12,12 +12,9 @@
 #include "hp9122c.h"
 
 #include "cpu/m6809/m6809.h"
-#include "cpu/m6809/m6809.h"
 #include "imagedev/floppy.h"
 #include "machine/fdc_pll.h"
 #include "machine/i8291a.h"
-#include "machine/i8291a.h"
-#include "machine/wd_fdc.h"
 #include "machine/wd_fdc.h"
 
 #include "formats/flopimg.h"

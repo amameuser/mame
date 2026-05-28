@@ -171,7 +171,6 @@ enum {
 #include "a2dht.h"
 #include "a2dvt.h"
 #include "a2part.h"
-#include "a2dwt.h"
 #include "a2kwd.h"
 #undef ALTO2_DEFINE_CONSTANTS
 
@@ -926,7 +925,6 @@ private:
 #include "a2dht.h"
 #include "a2dvt.h"
 #include "a2part.h"
-#include "a2dwt.h"
 #include "a2kwd.h"
 };
 
