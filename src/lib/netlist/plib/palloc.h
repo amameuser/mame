@@ -10,7 +10,6 @@
 
 #include "pconfig.h"
 #include "pgsl.h"
-#include "pgsl.h"
 #include "pmath.h"  // FIXME: only uses lcm ... move to ptypes.
 #include "ptypes.h"
 

@@ -25,7 +25,6 @@
 #include <istream>
 #include <ostream>
 #include <memory>
-#include <ostream>
 #include <streambuf>
 #include <string>
 #include <type_traits>

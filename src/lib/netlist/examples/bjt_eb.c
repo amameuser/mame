@@ -7,7 +7,6 @@
 
 
 #include "netlist/devices/net_lib.h"
-#include "netlist/devices/net_lib.h"
 
 NETLIST_START(bjt)
 {
