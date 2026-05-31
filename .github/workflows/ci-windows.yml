@@ -94,4 +94,5 @@ jobs:
         path: |
           compile_commands.json
           build/generated
+          build/projects
         if-no-files-found: error
