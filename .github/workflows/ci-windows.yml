@@ -94,5 +94,6 @@ jobs:
         path: |
           compile_commands.json
           build/generated
+          build/projects
           src/lib/netlist/generated
         if-no-files-found: error
