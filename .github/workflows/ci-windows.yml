@@ -62,7 +62,7 @@ jobs:
       with:
         msystem: ${{ matrix.msys }}
         update: true
-        install: git make ${{ matrix.slug }}-bear ${{ matrix.slug }}-${{ matrix.cc }} ${{ matrix.slug }}-python ${{ matrix.slug }}-lld ${{ matrix.slug }}-llvm ${{ matrix.slug }}-libc++ ${{ matrix.slug }}-sdl3 ${{ matrix.extrapkg }}
+        install: git make ${{ matrix.slug }}-bear ${{ matrix.slug }}-jq ${{ matrix.slug }}-${{ matrix.cc }} ${{ matrix.slug }}-python ${{ matrix.slug }}-lld ${{ matrix.slug }}-llvm ${{ matrix.slug }}-libc++ ${{ matrix.slug }}-sdl3 ${{ matrix.extrapkg }}
     - uses: actions/checkout@main
       with:
         fetch-depth: 0
@@ -78,6 +78,8 @@ jobs:
       run: bear -- make -j4
     - name: Validate
       run: ./${{ matrix.executable }}.exe -validate
+    - name: Sort compile_commands.json
+      run: jq -b -j 'sort_by(.directory, .file)' compile_commands.json > compile_commands_sorted.json && mv compile_commands_sorted.json compile_commands.json
     - uses: actions/upload-artifact@main
       with:
         name: ${{ matrix.executable }}-windows-${{ matrix.compiler }}-${{ github.sha }}
