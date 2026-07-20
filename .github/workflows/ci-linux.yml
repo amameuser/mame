@@ -48,7 +48,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y bear libsdl2-dev libsdl2-ttf-dev libfontconfig-dev libasound2-dev libxinerama-dev libxi-dev qt6-base-dev qt6-base-dev-tools
+        sudo apt-get install -y bear jq libsdl2-dev libsdl2-ttf-dev libfontconfig-dev libasound2-dev libxinerama-dev libxi-dev qt6-base-dev qt6-base-dev-tools
     - name: Install clang
       if: matrix.compiler == 'clang'
       run: sudo apt-get install -y clang
@@ -66,6 +66,8 @@ jobs:
       run: ./${{ matrix.executable }} -listxml | python scripts/build/makedep.py reconcilelist -l src/mame/${{ matrix.subtarget }}.lst -
     - name: ORM check
       run: python scripts/minimaws/minimaws.py load --executable ./${{ matrix.executable }} --softwarepath hash
+    - name: Sort compile_commands.json
+      run: jq -b 'sort_by(.directory, .file)' compile_commands.json > compile_commands_sorted.json && mv compile_commands_sorted.json compile_commands.json
     - uses: actions/upload-artifact@main
       with:
         name: ${{ matrix.executable }}-linux-${{ matrix.compiler }}-${{ github.sha }}
