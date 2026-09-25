@@ -36,7 +36,6 @@
 #include <functional>
 #include <locale>
 #include <thread>
-#include <locale>
 
 
 namespace ui {
