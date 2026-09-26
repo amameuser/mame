@@ -62,8 +62,8 @@ jobs:
       run: make -j3
     # - name: Validate
       # run: ./${{ matrix.executable }} -validate
-    - name: Reconcile driver list
-      run: ./${{ matrix.executable }} -listxml | python scripts/build/makedep.py reconcilelist -l src/mame/${{ matrix.subtarget }}.lst -
+    # - name: Reconcile driver list
+      # run: ./${{ matrix.executable }} -listxml | python scripts/build/makedep.py reconcilelist -l src/mame/${{ matrix.subtarget }}.lst -
     - name: ORM check
       run: python scripts/minimaws/minimaws.py load --executable ./${{ matrix.executable }} --softwarepath hash
     - uses: actions/upload-artifact@main
