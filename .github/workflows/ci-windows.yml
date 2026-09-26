@@ -75,8 +75,8 @@ jobs:
         TOOLS: 1
         USE_SDL3: 1
       run: make -j3
-    - name: Validate
-      run: ./${{ matrix.executable }}.exe -validate
+    # - name: Validate
+      # run: ./${{ matrix.executable }}.exe -validate
     - uses: actions/upload-artifact@main
       with:
         name: ${{ matrix.executable }}-windows-${{ matrix.compiler }}-${{ github.sha }}

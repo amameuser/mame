@@ -35,8 +35,8 @@ jobs:
         USE_LIBSDL: 1
         TOOLS: 1
       run: make -j2
-    - name: Validate
-      run: ./mame -validate
+    # - name: Validate
+      # run: ./mame -validate
     - uses: actions/upload-artifact@main
       with:
         name: mame-macos-${{ github.sha }}

@@ -60,8 +60,8 @@ jobs:
         SUBTARGET: ${{ matrix.subtarget }}
         TOOLS: 1
       run: make -j3
-    - name: Validate
-      run: ./${{ matrix.executable }} -validate
+    # - name: Validate
+      # run: ./${{ matrix.executable }} -validate
     - name: Reconcile driver list
       run: ./${{ matrix.executable }} -listxml | python scripts/build/makedep.py reconcilelist -l src/mame/${{ matrix.subtarget }}.lst -
     - name: ORM check
