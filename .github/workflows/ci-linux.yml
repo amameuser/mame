@@ -66,11 +66,11 @@ jobs:
       # run: ./${{ matrix.executable }} -listxml | python scripts/build/makedep.py reconcilelist -l src/mame/${{ matrix.subtarget }}.lst -
     # - name: ORM check
       # run: python scripts/minimaws/minimaws.py load --executable ./${{ matrix.executable }} --softwarepath hash
-    - uses: actions/upload-artifact@main
-      with:
-        name: ${{ matrix.executable }}-linux-${{ matrix.compiler }}-${{ github.sha }}
-        path: |
-          ${{ matrix.executable }}
-          chdman
-          unidasm
-        if-no-files-found: error
+    # - uses: actions/upload-artifact@main
+      # with:
+        # name: ${{ matrix.executable }}-linux-${{ matrix.compiler }}-${{ github.sha }}
+        # path: |
+          # ${{ matrix.executable }}
+          # chdman
+          # unidasm
+        # if-no-files-found: error

@@ -37,11 +37,11 @@ jobs:
       run: make -j2
     # - name: Validate
       # run: ./mame -validate
-    - uses: actions/upload-artifact@main
-      with:
-        name: mame-macos-${{ github.sha }}
-        path: |
-          mame
-          chdman
-          unidasm
-        if-no-files-found: error
+    # - uses: actions/upload-artifact@main
+      # with:
+        # name: mame-macos-${{ github.sha }}
+        # path: |
+          # mame
+          # chdman
+          # unidasm
+        # if-no-files-found: error
