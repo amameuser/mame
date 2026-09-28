@@ -75,7 +75,7 @@ jobs:
         SUBTARGET: ${{ matrix.subtarget }}
         TOOLS: 1
         USE_SDL3: 1
-      run: bear -- make -j4
+      run: bear -- make -j4 -n
     - name: Validate
       run: ./${{ matrix.executable }}.exe -validate
     - name: Sort compile_commands.json
