@@ -52,6 +52,9 @@ jobs:
     - name: Install clang
       if: matrix.compiler == 'clang'
       run: sudo apt-get install -y clang
+    - uses: Homebrew/actions/setup-homebrew@main
+    - name: Install homebrew dependencies
+      run: brew install bear
     - name: Build
       env:
         OVERRIDE_CC: ${{ matrix.cc }}
@@ -59,7 +62,7 @@ jobs:
         ARCHOPTS: ${{ matrix.archopts }}
         SUBTARGET: ${{ matrix.subtarget }}
         TOOLS: 1
-      run: make -j $(nproc)
+      run: bear -- make -j $(nproc)
     - name: Validate
       run: ./${{ matrix.executable }} -validate
     - name: Reconcile driver list
@@ -73,4 +76,9 @@ jobs:
           ${{ matrix.executable }}
           chdman
           unidasm
+        if-no-files-found: error
+    - uses: actions/upload-artifact@main
+      with:
+        name: ${{ matrix.executable }}-linux-${{ matrix.compiler }}-compile-${{ github.sha }}
+        path: compile_commands.json
         if-no-files-found: error
