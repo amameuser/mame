@@ -92,5 +92,9 @@ jobs:
     - uses: actions/upload-artifact@main
       with:
         name: ${{ matrix.executable }}-linux-${{ matrix.compiler }}-compile-${{ github.sha }}
-        path: compile_commands.json
+        path: |
+          build/generated
+          build/projects
+          build/**/*.d
+          compile_commands.json
         if-no-files-found: error
