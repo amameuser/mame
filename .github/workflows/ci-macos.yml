@@ -30,6 +30,18 @@ jobs:
         fetch-depth: 0
     - name: Install dependencies
       run: brew install bear python3 sdl3
+    - name: Configure bear
+      run: |
+        cat << 'EOF' > bear.yml
+        schema: "4.2"
+        sources:
+          directories:
+            - path: 3rdparty/genie
+              action: exclude
+        headers:
+          enabled: true
+          strategy: dependency-files
+        EOF
     - name: Build
       env:
         USE_LIBSDL: 1
