@@ -33,6 +33,7 @@ function maintargetosdoptions(_target,_subtarget)
 	if _OPTIONS["USE_SDL3"] == "1" then
 		links {
 			"SDL3",
+			"iconv",
 			"imm32",
 			"version",
 		}
