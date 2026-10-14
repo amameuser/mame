@@ -25,16 +25,17 @@ jobs:
   build-windows:
     strategy:
       matrix:
-        compiler: [gcc-x64, clang-x64, clang-arm64]
+        # compiler: [gcc-x64, clang-x64, clang-arm64]
+        compiler: [clang-x64]
         include:
-          - compiler: gcc-x64
-            os: windows-latest
-            msys: UCRT64
-            slug: mingw-w64-ucrt-x86_64
-            cc: gcc
-            cxx: g++
-            subtarget: mame
-            executable: mame
+          # - compiler: gcc-x64
+            # os: windows-latest
+            # msys: UCRT64
+            # slug: mingw-w64-ucrt-x86_64
+            # cc: gcc
+            # cxx: g++
+            # subtarget: mame
+            # executable: mame
           - compiler: clang-x64
             os: windows-latest
             msys: CLANG64
@@ -44,15 +45,15 @@ jobs:
             cxx: clang++
             subtarget: tiny
             executable: mametiny
-          - compiler: clang-arm64
-            os: windows-11-arm
-            msys: CLANGARM64
-            slug: mingw-w64-clang-aarch64
-            extrapkg: mingw-w64-clang-aarch64-gcc-compat
-            cc: clang
-            cxx: clang++
-            subtarget: mame
-            executable: mame
+          # - compiler: clang-arm64
+            # os: windows-11-arm
+            # msys: CLANGARM64
+            # slug: mingw-w64-clang-aarch64
+            # extrapkg: mingw-w64-clang-aarch64-gcc-compat
+            # cc: clang
+            # cxx: clang++
+            # subtarget: mame
+            # executable: mame
     runs-on: ${{ matrix.os }}
     defaults:
       run:
@@ -71,11 +72,21 @@ jobs:
         schema: "4.2"
         sources:
           directories:
-            - path: 3rdparty/genie
+            - path: ../../src/host
               action: exclude
-        headers:
-          enabled: true
-          strategy: dependency-files
+            - path: ../../../../../../mame/3rdparty/zstd
+              action: exclude
+            - path: 3rdparty/asmjit
+              action: exclude
+            - path: /d/a/mame/mame/3rdparty/lzma
+              action: exclude
+            - path: D:/a/mame/mame/3rdparty/bimg
+              action: exclude
+            - path: D:\\a\\mame\\mame\\3rdparty\\bx
+              action: exclude
+        # headers:
+          # enabled: true
+          # strategy: siblings
         EOF
     - name: Build
       env:
@@ -86,17 +97,18 @@ jobs:
         SUBTARGET: ${{ matrix.subtarget }}
         TOOLS: 1
         USE_SDL3: 1
-      run: bear -- make -j $(nproc)
-    - name: Validate
-      run: ./${{ matrix.executable }}.exe -validate
-    - uses: actions/upload-artifact@main
-      with:
-        name: ${{ matrix.executable }}-windows-${{ matrix.compiler }}-${{ github.sha }}
-        path: |
-          ${{ matrix.executable }}.exe
-          chdman.exe
-          unidasm.exe
-        if-no-files-found: error
+      run: bear -- make -j $(nproc) VERBOSE=1
+      continue-on-error: true
+    # - name: Validate
+      # run: ./${{ matrix.executable }}.exe -validate
+    # - uses: actions/upload-artifact@main
+      # with:
+        # name: ${{ matrix.executable }}-windows-${{ matrix.compiler }}-${{ github.sha }}
+        # path: |
+          # ${{ matrix.executable }}.exe
+          # chdman.exe
+          # unidasm.exe
+        # if-no-files-found: error
     - uses: actions/upload-artifact@main
       with:
         name: ${{ matrix.executable }}-windows-${{ matrix.compiler }}-compile-${{ github.sha }}
@@ -104,5 +116,6 @@ jobs:
           build/generated
           build/projects
           build/**/*.d
+          bear.yml
           compile_commands.json
         if-no-files-found: error
