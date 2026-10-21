@@ -31,6 +31,8 @@
 #include "ymfm_opq.h"
 #include "ymfm_fm.ipp"
 
+#include <cstdlib>
+
 #define TEMPORARY_DEBUG_PRINTS (0)
 
 //
