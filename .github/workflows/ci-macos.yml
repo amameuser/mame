@@ -29,7 +29,7 @@ jobs:
       with:
         fetch-depth: 0
     - name: Install dependencies
-      run: brew install bear python3 sdl3
+      run: brew install bear jq python3 sdl3
     - name: Build
       env:
         USE_LIBSDL: 1
@@ -37,6 +37,18 @@ jobs:
       run: bear -- make -j $(sysctl -n hw.logicalcpu)
     - name: Validate
       run: ./mame -validate
+    - name: Process compilation database
+      run: |
+        readonly JQ_FILE="compile_commands.json"
+        declare -a jq_flags
+        if [[ -n "$(tail -c 1 "${JQ_FILE}")" ]]; then
+          jq_flags+=(--join-output)
+        fi
+        jq "${jq_flags[@]}" '
+          # Exclude 3rdparty/genie files
+          map(select(.file | test("/src/host/.*\\.c$") | not))
+          | sort_by(.directory, .file)
+        ' "${JQ_FILE}" > "${JQ_FILE}.tmp" && mv "${JQ_FILE}.tmp" "${JQ_FILE}"
     - uses: actions/upload-artifact@main
       with:
         name: mame-macos-${{ github.sha }}

@@ -48,7 +48,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y libsdl2-dev libsdl2-ttf-dev libfontconfig-dev libasound2-dev libxinerama-dev libxi-dev qt6-base-dev qt6-base-dev-tools
+        sudo apt-get install -y jq libsdl2-dev libsdl2-ttf-dev libfontconfig-dev libasound2-dev libxinerama-dev libxi-dev qt6-base-dev qt6-base-dev-tools
     - name: Install clang
       if: matrix.compiler == 'clang'
       run: sudo apt-get install -y clang
@@ -69,6 +69,18 @@ jobs:
       run: ./${{ matrix.executable }} -listxml | python scripts/build/makedep.py reconcilelist -l src/mame/${{ matrix.subtarget }}.lst -
     - name: ORM check
       run: python scripts/minimaws/minimaws.py load --executable ./${{ matrix.executable }} --softwarepath hash
+    - name: Process compilation database
+      run: |
+        readonly JQ_FILE="compile_commands.json"
+        declare -a jq_flags
+        if [[ -n "$(tail -c 1 "${JQ_FILE}")" ]]; then
+          jq_flags+=(--join-output)
+        fi
+        jq "${jq_flags[@]}" '
+          # Exclude 3rdparty/genie files
+          map(select(.file | test("/src/host/.*\\.c$") | not))
+          | sort_by(.directory, .file)
+        ' "${JQ_FILE}" > "${JQ_FILE}.tmp" && mv "${JQ_FILE}.tmp" "${JQ_FILE}"
     - uses: actions/upload-artifact@main
       with:
         name: ${{ matrix.executable }}-linux-${{ matrix.compiler }}-${{ github.sha }}
