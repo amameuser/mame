@@ -29,7 +29,7 @@ jobs:
       with:
         fetch-depth: 0
     - name: Install dependencies
-      run: brew install bear python3 sdl3
+      run: brew install bear jq python3 sdl3
     - name: Build
       env:
         USE_LIBSDL: 1
@@ -37,6 +37,18 @@ jobs:
       run: bear -- make -j $(sysctl -n hw.logicalcpu)
     - name: Validate
       run: ./mame -validate
+    - name: Process compilation database
+      run: |
+        declare -a flags
+        flags=()
+        if [[ -n $(tail -c 1 "compile_commands.json") ]]; then
+          flags+=(--join-output)
+        fi
+        jq "${flags[@]}" '
+          map(select(.file | test("/src/host/.*\\.c$") | not))
+          | sort_by(.directory, .file)
+        ' "compile_commands.json" > "compile_commands.json.tmp" \
+          && mv "compile_commands.json.tmp" "compile_commands.json"
     - uses: actions/upload-artifact@main
       with:
         name: mame-macos-${{ github.sha }}
