@@ -62,7 +62,7 @@ jobs:
       with:
         msystem: ${{ matrix.msys }}
         update: true
-        install: git make ${{ matrix.slug }}-bear ${{ matrix.slug }}-jq ${{ matrix.slug }}-${{ matrix.cc }} ${{ matrix.slug }}-python ${{ matrix.slug }}-lld ${{ matrix.slug }}-llvm ${{ matrix.slug }}-libc++ ${{ matrix.slug }}-sdl3 ${{ matrix.extrapkg }}
+        install: git make ${{ matrix.slug }}-bear ${{ matrix.slug }}-include-what-you-use ${{ matrix.slug }}-jq ${{ matrix.slug }}-${{ matrix.cc }} ${{ matrix.slug }}-python ${{ matrix.slug }}-lld ${{ matrix.slug }}-llvm ${{ matrix.slug }}-libc++ ${{ matrix.slug }}-sdl3 ${{ matrix.extrapkg }}
     - uses: actions/checkout@main
       with:
         fetch-depth: 0

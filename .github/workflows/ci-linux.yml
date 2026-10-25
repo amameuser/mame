@@ -54,7 +54,7 @@ jobs:
       run: sudo apt-get install -y clang
     - uses: Homebrew/actions/setup-homebrew@main
     - name: Install homebrew dependencies
-      run: brew install bear
+      run: brew install bear include-what-you-use
     - name: Build
       env:
         OVERRIDE_CC: ${{ matrix.cc }}
