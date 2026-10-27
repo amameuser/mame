@@ -172,13 +172,14 @@ function osdmodulesbuild()
 	if _OPTIONS["targetos"]=="windows" then
 		includedirs {
 			MAME_DIR .. "3rdparty/winpcap/Include",
-			MAME_DIR .. "3rdparty/compat/mingw",
+			-- MAME_DIR .. "3rdparty/compat/mingw",
+			MAME_DIR .. "3rdparty/bx/include/compat/mingw",
 			MAME_DIR .. "3rdparty/portaudio/include",
 		}
 
-		includedirs {
-			MAME_DIR .. "3rdparty/compat/winsdk-override",
-		}
+		-- includedirs {
+			-- MAME_DIR .. "3rdparty/compat/winsdk-override",
+		-- }
 	end
 
 	if _OPTIONS["NO_OPENGL"]=="1" then
